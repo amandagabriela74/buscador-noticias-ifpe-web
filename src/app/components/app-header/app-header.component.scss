@@ -1,0 +1,77 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: #ffffff;
+  border-bottom: 1px solid #e6eaee;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.brand-mark span {
+  display: block;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #45b649, #9ad93a);
+}
+
+.brand-mark span:nth-child(3n) {
+  background: linear-gradient(135deg, #64c56a, #b9ec6d);
+}
+
+.brand-mark span:nth-child(2n) {
+  background: linear-gradient(135deg, #2fa24f, #7ecf4c);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-title {
+  font-family: "Plus Jakarta Sans", "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.brand-subtitle {
+  font-size: 13px;
+  color: #5b6675;
+}
+
+@media (max-width: 1024px) {
+  .topbar {
+    padding: 16px 28px;
+  }
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .topbar-meta {
+    text-align: left;
+  }
+}

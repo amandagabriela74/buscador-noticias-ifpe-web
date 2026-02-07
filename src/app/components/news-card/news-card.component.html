@@ -1,0 +1,17 @@
+<article
+  class="news-card"
+  [class.featured]="variant === 'featured'"
+  [class.compact]="variant === 'compact'"
+>
+  <div class="card-media">
+    <div class="campus-pill">{{ item.campus }}</div>
+    <div class="media-shape"></div>
+  </div>
+  <div class="card-body">
+    <h3>{{ item.titulo }}</h3>
+    <p>{{ item.conteudo }}</p>
+    <a class="card-link" [href]="item.url" target="_blank" rel="noopener"
+      >Ler notícia</a
+    >
+  </div>
+</article>

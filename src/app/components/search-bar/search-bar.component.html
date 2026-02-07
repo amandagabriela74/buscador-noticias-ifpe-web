@@ -1,0 +1,14 @@
+<form class="search-bar" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="search-field">
+    <label for="news-search">Buscar</label>
+    <input
+      id="news-search"
+      type="search"
+      formControlName="query"
+      placeholder="Digite um tema, campus ou palavra-chave"
+    />
+  </div>
+  <button type="submit" [disabled]="isSearching">
+    {{ isSearching ? 'Buscando...' : 'Buscar' }}
+  </button>
+</form>

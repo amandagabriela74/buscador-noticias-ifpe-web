@@ -1,0 +1,32 @@
+<section class="section">
+  <div class="section-head">
+    <div>
+      <h2>{{ title }}</h2>
+      @if (subtitle) {
+        <p>{{ subtitle }}</p>
+      }
+    </div>
+  </div>
+
+  @if (layout === "latest") {
+    <div class="latest-grid">
+      @if (featured) {
+        <app-news-card [item]="featured" variant="featured"></app-news-card>
+      }
+
+      <div class="latest-list">
+        @for (item of items || []; track trackBy ? trackBy($index, item) : item.id) {
+          <app-news-card [item]="item" variant="compact"></app-news-card>
+        }
+      </div>
+    </div>
+  }
+
+  @if (layout === "grid") {
+    <div class="grid">
+      @for (item of items || []; track trackBy ? trackBy($index, item) : item.id) {
+        <app-news-card [item]="item" variant="default"></app-news-card>
+      }
+    </div>
+  }
+</section>
