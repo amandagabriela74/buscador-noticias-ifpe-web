@@ -27,15 +27,25 @@
       ></app-news-section>
     }
 
-  
-    @if (hasSearch) {
-      <app-news-section
-        title="Resultados da busca"
-        subtitle="Notícias encontradas com base na relevância."
-        layout="grid"
-        [items]="(allNews$ | async) ?? []"
-        [trackBy]="trackById"
-      ></app-news-section>
-    }
+@if (hasSearch) {
+  @if (((allNews$ | async) ?? []).length > 0) {
+    <app-news-section
+      title="Resultados da busca"
+      subtitle="Notícias encontradas com base na relevância."
+      layout="grid"
+      [items]="(allNews$ | async) ?? []"
+      [trackBy]="trackById"
+    ></app-news-section>
+  } @else {
+    <app-news-section
+      title="Nenhum resultado encontrado"
+      subtitle="Tente novamente com outra busca."
+      layout="grid"
+      [items]="[]"
+      [trackBy]="trackById"
+    ></app-news-section>
+  }
+}
+
   </main>
 </div>
