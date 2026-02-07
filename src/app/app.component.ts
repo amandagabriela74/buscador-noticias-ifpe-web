@@ -56,19 +56,26 @@ export class AppComponent implements OnInit {
     this.newsService.load();
   }
 
-  onSearch(): void {
-    const term = this.searchForm.controls.query.value.trim();
-    this.hasSearch = true;
+onSearch(): void {
+  const term = this.searchForm.controls.query.value.trim();
 
-    this.isSearching = true;
-    this.searchService.search(term).subscribe({
-      next: (items) => this.currentList$.next(items ?? []),
-      error: () => this.currentList$.next([]),
-      complete: () => {
-        this.isSearching = false;
-      },
-    });
+  if (!term) {
+    this.hasSearch = false;
+    this.newsService.getAll().subscribe(items =>
+      this.currentList$.next(items ?? [])
+    );
+    return;
   }
+
+  this.hasSearch = true;
+  this.isSearching = true;
+
+  this.searchService.search(term).subscribe({
+    next: (items) => this.currentList$.next(items ?? []),
+    error: () => this.currentList$.next([]),
+    complete: () => (this.isSearching = false),
+  });
+}
 
   trackById(_index: number, item: NewsItem): string {
     return item.id;

@@ -18,6 +18,15 @@
         [trackBy]="trackById"
       ></app-news-section>
     }
+      @if (hasSearch) {
+      <app-news-section
+        title="Resultados da busca"
+        subtitle="Notícias encontradas com base na relevância."
+        layout="grid"
+        [items]="(allNews$ | async) ?? []"
+        [trackBy]="trackById"
+      ></app-news-section>
+    }
 
     <app-news-section
       title="Todas Notícias"

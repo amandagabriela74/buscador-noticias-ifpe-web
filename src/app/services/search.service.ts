@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
-import { NewsItem } from '../models/news.model';
+import { NewsItem , SearchResponse} from '../models/news.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,11 @@ export class SearchService {
 
   search(query: string): Observable<NewsItem[]> {
     const url = `${this.baseUrl}?q=${encodeURIComponent(query)}`;
-    return this.http.get<NewsItem[]>(url);
+
+    return this.http
+      .get<SearchResponse>(url)
+      .pipe(
+        map(response => response.resultados ?? [])
+      );
   }
 }
