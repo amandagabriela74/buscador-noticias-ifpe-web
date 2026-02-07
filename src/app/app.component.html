@@ -17,8 +17,18 @@
         [items]="(latestSide$ | async) ?? []"
         [trackBy]="trackById"
       ></app-news-section>
+
+      <app-news-section
+        title="Todas Notícias"
+        subtitle="Lista completa para navegação e pesquisa."
+        layout="grid"
+        [items]="(allNews$ | async) ?? []"
+        [trackBy]="trackById"
+      ></app-news-section>
     }
-      @if (hasSearch) {
+
+  
+    @if (hasSearch) {
       <app-news-section
         title="Resultados da busca"
         subtitle="Notícias encontradas com base na relevância."
@@ -27,13 +37,5 @@
         [trackBy]="trackById"
       ></app-news-section>
     }
-
-    <app-news-section
-      title="Todas Notícias"
-      subtitle="Lista completa para navegação e pesquisa."
-      layout="grid"
-      [items]="(allNews$ | async) ?? []"
-      [trackBy]="trackById"
-    ></app-news-section>
   </main>
 </div>
