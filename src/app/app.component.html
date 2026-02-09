@@ -25,6 +25,12 @@
         [items]="(allNews$ | async) ?? []"
         [trackBy]="trackById"
       ></app-news-section>
+
+      <app-pagination
+        [page]="currentPage"
+        [totalPages]="totalPages"
+        (pageChange)="onPageChange($event)"
+      ></app-pagination>
     }
 
 @if (hasSearch) {
@@ -36,6 +42,12 @@
       [items]="(allNews$ | async) ?? []"
       [trackBy]="trackById"
     ></app-news-section>
+
+    <app-pagination
+      [page]="currentPage"
+      [totalPages]="totalPages"
+      (pageChange)="onPageChange($event)"
+    ></app-pagination>
   } @else {
     <app-news-section
       title="Nenhum resultado encontrado"
@@ -44,6 +56,11 @@
       [items]="[]"
       [trackBy]="trackById"
     ></app-news-section>
+    <div class="back-btn-container">
+      <button class="back-btn" (click)="resetSearch()">
+      Voltar para todas as notícias
+   </button>
+    </div>
   }
 }
 
