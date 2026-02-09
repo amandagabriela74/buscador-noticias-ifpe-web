@@ -99,6 +99,17 @@ export class AppComponent implements OnInit {
       complete: () => (this.isSearching = false),
     });
   }
+  resetSearch(): void {
+  this.searchForm.reset({ query: '' });
+  this.hasSearch = false;
+  this.isSearching = false;
+  this.currentPage$.next(1);
+
+  this.newsService.getAll().subscribe(items =>
+    this.currentList$.next(items ?? [])
+  );
+}
+
 
   onPageChange(page: number): void {
     this.currentPage$.next(page);
@@ -124,3 +135,4 @@ export class AppComponent implements OnInit {
     return item.id;
   }
 }
+
